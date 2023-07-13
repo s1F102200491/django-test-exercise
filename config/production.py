@@ -4,7 +4,7 @@ from .settings import *
 
 DEBUG = True
 SECRET_KEY = os.environ["SECRET_KEY"]
-ALLOWED_HOTS.append(os.environ["RENDER_EXTERNAL_HOSTNAME"])
+ALLOWED_HOSTS.append(os.environ["RENDER_EXTERNAL_HOSTNAME"])
 
 MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 DATABASES = {
