@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.utils.timezone import make_aware
 from django.utils.dateparse import parse_datetime
-from todo.models import Task
+from todo.models import Task, Memo
 
 
 # Create your views here.
@@ -78,3 +78,22 @@ def re_open(request, task_id):
     task.completed = False
     task.save()
     return redirect(index)
+
+def memo(request, task_id):
+    try:
+        task = Task.objects.get(pk=task_id)
+    except Task.DoesNotExist:
+        raise Http404("Task does not exist")
+    
+    if request.method == 'POST':
+        memo_text = request.POST.get('text')
+        memo = Memo(task=task, memo_text=memo_text)
+        memo.save()
+
+    memos = task.memos.order_by('-posted_at')
+    
+    context = {
+        'task': task,
+        'memos': memos
+    }
+    return render(request, "todo/detail.html", context)

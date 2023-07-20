@@ -13,3 +13,8 @@ class Task(models.Model):
         if self.due_at is None:
             return False
         return self.due_at < dt
+
+class Memo(models.Model):
+    task = models.ForeignKey(Task, related_name='memos', on_delete=models.CASCADE)
+    memo_text = models.TextField()
+    posted_at = models.DateTimeField(default=timezone.now)
