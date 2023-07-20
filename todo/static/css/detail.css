@@ -1,12 +1,14 @@
 h1 {
-    border-left: solid pink 5px;
+    border-left: solid lightskyblue 5px;
     border-bottom: solid #e4e4e4 5px;
-    padding: 50x;
     background-color: #f4f4f4;
+    padding: 10px;
+    margin: 20px;
 }
 
 li {
     padding: 10px;
+    margin: 20px;
 }
 
 a {
@@ -25,7 +27,7 @@ a {
 }
 
 a:hover {
-    background: pink;
+    background: lightskyblue;
     color: #FFF;
 }
 
@@ -33,6 +35,31 @@ a:hover:after {
     border-color: #FFF;
 }
 
-.button {
+.bt {
     padding: 20px;
 }
+
+button {
+    background: #eee;
+    border-radius: 3px;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+    max-width: 280px;
+    padding: 10px 25px;
+    color: black;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    border: none;
+}
+
+button:hover {
+    background: lightskyblue;
+    color: #FFF;
+}
+
+button:hover:after {
+    border-color: #FFF;
+}
+
