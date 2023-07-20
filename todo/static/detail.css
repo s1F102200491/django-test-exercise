@@ -1,0 +1,38 @@
+h1 {
+    border-left: solid pink 5px;
+    border-bottom: solid #e4e4e4 5px;
+    padding: 15px;
+    background-color: #f4f4f4;
+}
+
+li {
+    padding: 10px;
+}
+
+a {
+    background: #eee;
+    border-radius: 3px;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px;
+    max-width: 280px;
+    padding: 10px 25px;
+    color: black;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a:hover {
+    background: pink;
+    color: #FFF;
+}
+
+a:hover:after {
+    border-color: #FFF;
+}
+
+.button {
+    padding: 20px;
+}
