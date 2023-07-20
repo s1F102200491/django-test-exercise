@@ -15,4 +15,5 @@ urlpatterns = [
 
     path('<int:task_id>/re_open', todo_views.re_open, name='re_open'),
 
+    path('<int:task_id>/memo', todo_views.memo, name='memo'),
 ]

@@ -6,6 +6,7 @@
     <title>To Do Application</title>
     <meta charset="UTF-8">
     <meta name="author" content="INIAD">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   </head>
 
   <body>
@@ -33,6 +34,36 @@
 
       <a href="{% url 're_open' task.id %}">Open</a>
     </div>
+
+        
+    <form action="{% url 'memo' task.id %}" method="post">
+      {% csrf_token %}
+      <div>
+        <br>
+        <label for="textInput"><h2>memo</h2></label><br>
+        <textarea id="textInput" name="text" rows="3" required></textarea>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-outline-dark">送信</button>
+      </div>
+    </form>
+    {% if memos %}
+      {% for memo in memos %}
+      <div class="balloon5">
+        <div class="says">
+          <small>[{{ memo.posted_at }}]</small>
+          <div>
+            {{ memo.memo_text | linebreaksbr }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <br>
+      <p>メモがありません。</p>
+    {% endif %}
+
+
   </body>
 
 </html>
