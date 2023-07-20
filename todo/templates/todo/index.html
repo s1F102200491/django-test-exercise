@@ -2,52 +2,76 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-  <head>
-    <title>To Do Application</title>
-    <meta charset="UTF-8">
-    <meta name="author" content="INIAD">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="INIAD">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <title>To Do Application</title>
+</head>
 
-  <body>
-    <h1>Sample To Do Application</h1>
-    <p>You can submit tasks from the following form.</p>
-    <form action="{% url 'index' %}" method="post">
-      {% csrf_token %}
-      <div>
-        <label for="titleInput">Title</label><br>
-        <input id="titleInput" name="title" type="text" placeholder="Input title">
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col top">
+        <h1>Sample To Do Application</h1>
       </div>
-      <div>
-        <label for="dueInput">Due at:</label><br>
-        <input id="dueInput" name="due_at" type="datetime-local">
-      </div>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+    </div>
+    <div class="row">
+      <p>You can submit tasks from the following form.</p>
+      <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <div>
+          <label for="titleInput">Title</label><br>
+          <input id="titleInput" name="title" type="text" placeholder="Input title">
+        </div>
+        <div>
+          <label for="dueInput">Due at:</label><br>
+          <input id="dueInput" name="due_at" type="datetime-local">
+        </div>
+        <div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
     <br>
 
-    <div>
-      <a href="{% url 'index' %}?order=due">Sort by Due Date</a> |
-      <a href="{% url 'index' %}?order=post">Sort by Posted Date</a>
+    <div class="row">
+      <div class="col">
+        <div>
+          <a class="btn btn-outline-secondary" href="{% url 'index' %}?order=due">Sort by Due Date</a>
+          <a class="btn btn-outline-secondary" href="{% url 'index' %}?order=post" role="button">Sort by Posted Date</a>
+        </div>
+      </div>
     </div>
-
-    {% for task in tasks %}
-    <div class="text">
-      <h2><a href="{%url 'detail' task.id %}"> {{task.title }}</a></h2>
-      <ul>
-        <li>Posted at: {{ task.posted_at }}</li>
-        {% if task.due_at %} 
-        <li>Due at: {{ task.due_at }}</li>
-        {% endif %}
-        {% if task.completed %} 
-        <li>Status: Completed</li>
-        {% else %}
-        <li>Status: Not Completed</li>
-        {% endif %}
-      </ul>
+    <div class="row ">
+      {% for task in tasks %}
+      <div class="col task">
+      <div class="text">
+        <h2><a href="{%url 'detail' task.id %}"> {{task.title }}</a></h2>
+        <ul>
+          <li>Posted at: {{ task.posted_at }}</li>
+          {% if task.due_at %}
+          <li>Due at: {{ task.due_at }}</li>
+          {% endif %}
+          {% if task.completed %}
+          <li>Status: Completed</li>
+          {% else %}
+          <li>Status: Not Completed</li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
-    {% endfor %}
-  </body>
+      {% endfor %}
+    </div>
+  </div>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
 
 </html>
