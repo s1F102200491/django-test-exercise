@@ -40,17 +40,17 @@
       {% csrf_token %}
       <div>
         <br>
-        <label for="textInput"><h2>memo</h2></label><br>
-        <textarea id="textInput" name="text" rows="3" required></textarea>
+        <label for="textInput"><h2>Memo</h2></label>
+        <textarea id="textInput" name="text" rows="5" required></textarea>
       </div>
       <div>
-        <button type="submit" class="btn btn-outline-dark">Submit</button>
+        <button type="submit">Submit</button>
       </div>
     </form>
     {% if memos %}
       {% for memo in memos %}
       <div>
-        <div>
+        <div class="memo">
           <small>[{{ memo.posted_at }}]</small>
           <div>
             {{ memo.memo_text | linebreaksbr }}
